@@ -6,7 +6,7 @@ use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('admin.dashboard');
 });
 
 Route::prefix('/')->group(function () {
