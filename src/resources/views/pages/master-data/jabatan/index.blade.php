@@ -18,21 +18,21 @@
                     <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-2">
                         <form method="GET" action="{{ url()->current() }}" class="d-flex flex-column flex-md-row gap-2">
                             <!-- Search Name -->
-                            <div class="input-group input-group-sm" style="min-width: 180px; max-height: 60px;">
+                            <div class="input-group input-group-sm" style="min-width: 180px; max-height: 40px;">
                                 <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
                                 <input type="text" class="form-control" name="searchName" placeholder="Search Name..."
                                        value="{{ request('searchName') }}" autocomplete="off" />
                             </div>
 
                             <!-- Search Kode -->
-                            <div class="input-group input-group-sm" style="min-width: 120px; max-height: 60px;">
+                            <div class="input-group input-group-sm" style="min-width: 120px; max-height: 40px;">
                                 <span class="input-group-text"><i class="bi bi-key"></i></span>
                                 <input type="text" class="form-control" name="searchKode" placeholder="Search Kode..."
                                        value="{{ request('searchKode') }}" autocomplete="off" />
                             </div>
 
                             <!-- Search Level -->
-                            <div class="input-group input-group-sm" style="min-width: 120px; max-height: 60px;">
+                            <div class="input-group input-group-sm" style="min-width: 120px; max-height: 40px;">
                                 <span class="input-group-text"><i class="bi bi-bar-chart"></i></span>
                                 <input type="text" class="form-control" name="searchLevel" placeholder="Search Level..."
                                        value="{{ request('searchLevel') }}" autocomplete="off" />
@@ -45,7 +45,7 @@
                             @endif
 
                             <!-- Per page -->
-                            <select name="perPage" class="form-select form-select-sm" style="min-width: 100px; max-height: 60px;" onchange="this.form.submit()">
+                            <select name="perPage" class="form-select form-select-sm" style="min-width: 100px; max-height: 40px;" onchange="this.form.submit()">
                                 @foreach([10, 20, 50, 100] as $n)
                                     <option value="{{ $n }}" @selected((int)request('perPage', 10) === $n)>
                                         {{ $n }}/page
@@ -53,8 +53,8 @@
                                 @endforeach
                             </select>
 
-                            <button class="btn btn-primary btn-sm" type="submit" style="max-height: 60px;">
-                                <i class="bi bi-funnel me-1"></i> Filter
+                            <button class="btn btn-primary btn-sm" type="submit" style="max-height: 40px;">
+                                <i class="bi bi-funnel me-1"></i>
                             </button>
                         </form>
 
@@ -101,12 +101,12 @@
                                                 <i class="bi bi-three-dots"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('admin.master-data.jabatan.show', $jabatan->id) }}">
-                                                        <i class="bi bi-eye me-2"></i> Detail
-                                                    </a>
-                                                </li>
-                                                <li><hr class="dropdown-divider"></li>
+{{--                                                <li>--}}
+{{--                                                    <a class="dropdown-item" href="{{ route('admin.master-data.jabatan.show', $jabatan->id) }}">--}}
+{{--                                                        <i class="bi bi-eye me-2"></i> Detail--}}
+{{--                                                    </a>--}}
+{{--                                                </li>--}}
+{{--                                                <li><hr class="dropdown-divider"></li>--}}
                                                 <li>
                                                     <a class="dropdown-item" href="{{ route('admin.master-data.jabatan.edit', $jabatan->id) }}">
                                                         <i class="bi bi-pencil-square me-2"></i> Edit
@@ -115,7 +115,7 @@
                                                 <li><hr class="dropdown-divider"></li>
                                                 <li>
                                                     <button type="button" class="dropdown-item text-danger btn-delete-jabatan"
-                                                            data-url="{{ route('admin.master-data.jabatan.delete', $jabatan->id) }}"
+                                                            data-url="{{ route('admin.master-data.jabatan.destroy', $jabatan->id) }}"
                                                             data-name="{{ $jabatan->name }}">
                                                         <i class="bi bi-trash me-2"></i> Delete
                                                     </button>
