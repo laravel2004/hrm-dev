@@ -1,0 +1,32 @@
+1. docker exec -it postgres-master bash
+2. apt update && apt install nano -y
+   nano /var/lib/postgresql/data/postgresql.conf
+
+3. tambahkan di script
+wal_level = replica
+max_wal_senders = 10
+wal_keep_size = 64
+
+4. nano /var/lib/postgresql/data/pg_hba.conf
+tambahkan script ini
+host replication user123 0.0.0.0/0 md5
+
+5. masuk ke docker container nya slave
+docker exec -it postgres-slave bash
+
+6. rm -rf /var/lib/postgresql/data/*
+
+7. pg_basebackup -h postgres-master \
+   -D /var/lib/postgresql/data \
+   -U user123 \
+   -Fp -Xs -P -R
+
+
+8. exit
+   docker restart postgres-slave
+
+9. docker exec -it postgres-master psql -U user123 -d test
+
+10. SELECT client_addr, state FROM pg_stat_replication;
+
+jika berhasil maka status nya streaming
